@@ -86,11 +86,11 @@ export function dfs(row, col, board, visited) {
   // set visited set with coords
   // get neighbors
   // any neighbors with numbers, reveal, don't recurse
-  // any neibhors with mines, don't reveal, don't recurse
+  // any neighbors with mines, don't reveal, don't recurse
   board[row][col].isRevealed = true; // reveal empties and numbers
   visited.add(`${row}-${col}`);
 
-  // stop recrusion on numbers
+  // stop recursion on numbers
   if (board[row][col].adjacentMines > 0) {
     return;
   }

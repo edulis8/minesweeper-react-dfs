@@ -1,4 +1,11 @@
-# Ready-to-hack React Skeleton 💀: React + Vite (All Cleaned-Up) + Eslint and Prettier Setup
+# Minesweeper! Made with React.
+
+Minesweeper game, leveraging a depth-first search graph algorithm to reveal the board.
+
+
+
+
+## Created from: Ready-to-hack React Skeleton 💀: React + Vite (All Cleaned-Up) + Eslint and Prettier Setup
 
 ## TO CLONE IT:
 - `git clone https://github.com/edulis8/react-vite-prettier-skeleton.git` [your-new-app-name-here]

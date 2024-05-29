@@ -1,23 +1,21 @@
-import { useEffect, useState, useMemo } from 'react';
+import { useState, useMemo } from 'react';
 import './App.css';
-import { dfs, generateBoard, getNeighbors, revealMines } from './utils';
+import { dfs, generateBoard, revealMines } from './utils';
 
+// TODO add dropdown with other board lengths and difficulties
 const BEGINNER_BOARD_LENGTH = 9;
 function App() {
-  // const [seed, setSeed] = useState(0);
   const [board, setBoard] = useState(
     useMemo(
       () => generateBoard(BEGINNER_BOARD_LENGTH, BEGINNER_BOARD_LENGTH, 10),
       [],
     ),
   );
-  // const [board, setBoard] = useState(
-  //   generateBoard(BEGINNER_BOARD_LENGTH, BEGINNER_BOARD_LENGTH, 10),
-  // );
+
   const [gameOver, setGameOver] = useState(false);
 
-  function checkGameWon(board) {
-    for (const row of board) {
+  function checkGameWon(gameBoard) {
+    for (const row of gameBoard) {
       for (const cell of row) {
         // If the cell is not a mine and is not revealed, the game is not won
         if (!cell.isMine && !cell.isRevealed) {
@@ -33,14 +31,14 @@ function App() {
     if (gameOver) return;
     if (board[row][col].isFlagged) return;
     if (checkGameWon(board)) {
-      alert('game won :)');
+      alert('Game won :)'); // TODO improve this
       reset();
     }
 
     const newBoard = JSON.parse(JSON.stringify(board));
     if (board[row][col].isMine) {
       // explode and reveal all mines
-      console.log('mine!!');
+      console.warn('Mine!!');
       setBoard(revealMines(board));
       setGameOver(true);
     }
@@ -69,10 +67,11 @@ function App() {
 
   return (
     <main>
-      {/* <pre>{JSON.stringify(generateBoard(9, 9, 10), null, 2)}</pre> */}
+      <h2>Minesweeper</h2>
+      <h4>(Using a depth-first search graph algorithm to reveal the board.)</h4>
       <section className="info">
         {gameOver ? (
-          <button onClick={reset} type="button">
+          <button className="reset" onClick={reset} type="button">
             Game Over, Reset?
           </button>
         ) : (
